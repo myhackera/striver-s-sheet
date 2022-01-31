@@ -1,0 +1,51 @@
+NOT INPLACE ROTATION
+------------------------------
+
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+
+t = [[-1 for i in range(len(matrix[0]))] for i in range(len(matrix))]
+        
+n = len(matrix)-1  # For column 
+for i in range(len(matrix)):
+    m = 0  # For Row
+    for j in range(len(matrix[0])):
+        t[m][n] = matrix[i][j]
+        m += 1
+    n -= 1
+print(t)
+
+
+TC : O(N*N)
+SC : O(N*N)
+
+
+INPLACE ROTATION
+---------------------
+
+class Solution:
+    
+    def transpose(self, matrix):
+        n = len(matrix)
+        for i in range(n):
+            for j in range(i, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+            
+    def reverseCol(self, matrix):
+        n = len(matrix)
+        for i in range(n):
+            j = 0
+            k = n-1
+            while j<k:
+                matrix[i][j], matrix[i][k] = matrix[i][k], matrix[i][j]
+                j += 1 
+                k -= 1
+    
+    
+    def rotate(self, matrix: List[List[int]]) -> None:
+        self.transpose(matrix)
+        self.reverseCol(matrix)
+        return matrix
+        
+TC : O(N*N)
+SC : O(1)
+        
