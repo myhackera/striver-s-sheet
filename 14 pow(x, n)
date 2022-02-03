@@ -15,3 +15,5 @@ class Solution:
         
         return result
                 
+TC : O(LOG n)
+SC : O(1)
