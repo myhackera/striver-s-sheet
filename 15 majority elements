@@ -1,0 +1,25 @@
+SOLUTION 1.)
+================>
+Use two loops and count for each character and if count of any character found to be larger than n//2 than return that key.
+
+TC : O(N*N)
+TC : O(1)
+
+SOLUTION 2.)
+================>
+
+from collections import Counter
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        
+        n = len(nums)
+        d = Counter(nums)
+        
+        for key,value in d.items():
+            
+                if(value > len(nums)//2):
+                    return key
+       
+TC : O(N)
+SC : O(N)
+            
