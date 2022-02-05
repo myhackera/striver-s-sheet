@@ -1,0 +1,35 @@
+SOLUTION 1.)
+=========================>
+
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        
+        nums.sort()
+        ret = []
+        l = len(nums)
+        
+        for i in range(l-3):
+            for j in range(i+1,l-2):
+                
+                p1 = j+1
+                p2 = l-1
+                
+                while(p2 > p1):
+                    
+                    p = nums[i]+nums[j]+nums[p1]+nums[p2]
+                    
+                    if(p == target):
+                        ps = sorted([nums[i], nums[j], nums[p1], nums[p2]])
+                        if ps not in ret:
+                            ret.append(ps)
+                        p1 += 1
+                    elif(p > target):
+                        p2 -= 1
+                    else:
+                        p1 += 1
+                        
+        return ret
+        
+TC : O(N^3)
+SC : O(N)
+                     
