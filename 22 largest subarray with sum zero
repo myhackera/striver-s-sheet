@@ -1,0 +1,24 @@
+class Solution:
+    def maxLen(self, n, arr):
+        
+        max_len = 0
+        currSum = 0
+        hashMap = {}
+        
+        for i in range(n):
+            
+            currSum += arr[i]
+            
+            if arr[i] is 0 and max_len is 0:
+                max_len = 1
+            if currSum is 0:
+                max_len = i+1
+                
+            if currSum in hashMap:
+                max_len = max(max_len, i-hashMap[currSum])
+            else:
+                hashMap[currSum] = i
+                
+        return max_len
+        
+ 
