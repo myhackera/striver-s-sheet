@@ -1,0 +1,19 @@
+class Solution:    
+    #Function to find the minimum number of platforms required at the
+    #railway station such that no train waits.
+    def minimumPlatform(self,n,arrival,dep):
+        
+        arrival.sort()
+        dep.sort()
+        
+        i = 1
+        j = 0
+        platform = 1
+        
+        while i < n and j < n:
+            if arrival[i] <= dep[j]:  # If train is departing lately to arrival of train
+                platform += 1         # increase the platform count  
+            else:
+                j += 1 
+            i +=  1
+        return platform
