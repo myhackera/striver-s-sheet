@@ -1,0 +1,25 @@
+def ispossible(stalls, k, mid):
+    cowCount = 1
+    last = stalls[0]
+    for i in range(len(stalls)):
+        if stalls[i]-last >= mid:
+            cowCount += 1 
+            if cowCount == k:
+                return True
+            last = stalls[i]
+    return False
+           
+def aggressiveCows(stalls, k):
+    # Write your code here.
+    stalls.sort()
+    low = 0
+    high = max(stalls)
+    res = -1
+    while low <= high:
+        mid = low + (high-low)//2
+        if ispossible(stalls, k, mid):
+            res = mid
+            low = mid + 1
+        else:
+            high = mid - 1
+    return res
