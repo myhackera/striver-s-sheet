@@ -1,0 +1,24 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        # s = s.strip(" ")
+        # ls = s.split()
+        # reverse = ls[::-1]
+        # return ' '.join(reverse)
+        
+        ans = []
+        i = 0
+        while i < len(s):
+            word = ''
+            while i < len(s) and s[i] != ' ':
+                word += s[i]
+                i += 1 
+            if len(word) > 0:
+                ans.append(word)
+            i += 1
+            
+        res = ""
+        while len(ans) > 1:
+            res += ans.pop()
+            res += " "
+        res += ans.pop()
+        return res
