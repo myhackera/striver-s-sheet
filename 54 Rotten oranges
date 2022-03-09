@@ -1,0 +1,31 @@
+from collections import deque
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+ 
+        m = len(grid)
+        n = len(grid[0])
+        if m == 0:
+            return 0
+    
+        fresh_set = set() # fresh oranges
+        rotten = deque() # rotten oranges
+        step = 0
+        dirs = [(0, 1), (0, -1), (-1, 0), (1, 0)] # right, left, top, bottom
+    
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    fresh_set.add((i, j))
+                if grid[i][j] == 2:
+                    rotten.append([i, j, step])
+                
+        while rotten:
+            x,y,step = rotten.popleft()
+            for dx, dy in dirs:
+                if 0<=x+dx<m and 0<=y+dy<n and grid[x+dx][y+dy] == 1:
+                    grid[x+dx][y+dy]=2
+                    fresh_set.remove((x+dx,y+dy))
+                    rotten.append([x+dx,y+dy,step+1])
+                
+        return step if not fresh_set else -1
+        
