@@ -1,0 +1,12 @@
+class StockSpanner:
+
+    def __init__(self):
+        self.arr = []
+
+    def next(self, price: int) -> int:
+        count = 1
+        while len(self.arr) > 0 and self.arr[-1][0] <= price:
+            count += self.arr[-1][1]
+            self.arr.pop()
+        self.arr.append((price, count))
+        return count
