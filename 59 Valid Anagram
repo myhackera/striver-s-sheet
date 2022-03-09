@@ -1,0 +1,36 @@
+SOLUTION 1.) 
+================================================>
+
+from collections import defaultdict
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+         ls = len(s)
+         lt = len(t)
+         if(ls != lt):
+             return 0
+         else:
+             ss = sorted(s)
+             st = sorted(t)
+             for i in range(ls):
+                 if(ss[i] != st[i]):
+                     return 0
+             return 1
+
+SOLUTION 2.) 
+==============================================>
+
+         d = defaultdict(int)
+    
+         for c in s: d[c] += 1
+         for c in t: d[c] -= 1
+                
+        
+         return all(x == 0 for x in d.values())
+
+SOLUTION 3.) 
+==============================================>
+
+        return sorted(s) == sorted(t)
+            
+        
