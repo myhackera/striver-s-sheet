@@ -1,3 +1,6 @@
+SOLUTION 1.)
+=========================================>
+
 class Solution:
     def compareVersion(self, version1: str, version2: str) -> int:
         
@@ -32,6 +35,26 @@ class Solution:
             for i in range(l2, l1):
                 if int(s1[i]) > 0:
                     return 1 
-            
-                
+           
         return 0
+        
+SOLUTION 2.) 
+==================================>
+
+from itertools import zip_longest
+class Solution:
+    def compareVersion(self, version1: str, version2: str) -> int:
+        
+        lis1 = list(map(int, version1.split('.')))
+        lis2 = list(map(int, version2.split('.')))
+        
+        for val1, val2 in zip_longest(lis1, lis2, fillvalue=0):
+            
+            if val1 == val2:
+                continue
+            
+            else:
+                return -1 if val2 > val1 else 1
+            
+        return 0
+        
