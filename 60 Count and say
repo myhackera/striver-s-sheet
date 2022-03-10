@@ -1,0 +1,25 @@
+class Solution:
+    
+    def countAndSay(self, n: int) -> str:
+        
+        s = '1'
+        
+        for _ in range(n-1):
+            
+            present = s[0]
+            count = 0
+            temp = ''
+            
+            for char in s:
+            
+                if present == char:
+                    count += 1 
+                else:
+                    temp += str(count) + present
+                    present = char
+                    count = 1 
+            
+            temp += str(count) + present 
+            s = temp
+            
+        return s
