@@ -1,38 +1,20 @@
-bool cmp(Item a, Item b)
-{
-    return a.value/(a.weight*1.0)>b.value/(b.weight*1.0);
-}
-
-class Solution
-
-    public:
-    //Function to get the maximum total value in the knapsack.
-    double fractionalKnapsack(int W, Item arr[], int n)
-    {
-        // Your code here
-        pair<double,double> vect[n];
-        for(int i=0;i<n;i++){
-            vect[i].first= arr[i].value;
-            vect[i].second=arr[i].weight;
-        }
+class Solution:    
+    def fractionalknapsack(self, W,Items,n):
         
-        sort(vect,vect+n,cmp);
-        double profit=0;
+        Items.sort(key = lambda x: -x.value/x.weight)
+        profit = 0.0
         
-        for(int i=0;i<n;i++){
-            if(vect[i].second<=W && W>0){
-              profit+=vect[i].first; 
-              W-=vect[i].second;
-            }
+        for item in Items:
             
-            else
-            {
-                double res= (double)vect[i].first/(double)vect[i].second;
-                profit+=res*W;
-                break;
-            }
-        }
-        return profit;
-    }
+            if W >= item.weight:
+                W -= item.weight
+                profit += item.value
+            elif W > 0 and W < item.weight:
+                profit += (item.value*W)/item.weight
+                W = 0
+            if W == 0:
+                break
+        
+        return profit
         
 };
