@@ -1,38 +1,31 @@
-C++
-====================>
+class Solution:
 
-class Solution 
-{
-    static bool comb(Job a, Job b){
-        return a.profit > b.profit;
-    }
-    public:
-    //Function to find the maximum profit and the number of jobs done.
-    vector<int> JobScheduling(Job arr[], int n) 
-    { 
-        sort(arr, arr+n, comb);
-        vector<bool> vis(n, false);
+    def JobScheduling(self,Jobs,n):
         
-        int maxprofit = 0; int jobcount = 0;
+        stack = []
+        for job in Jobs:
+            stack.append([job.deadline, job.profit])
+        stack.sort(key = lambda x: x[1])
         
-        for(int i = 0; i < n; i++){
-            for(int j = arr[i].dead-1; j >= 0; j--){
-                if(vis[j])
-                    continue;
-                else{
-                    vis[j] = true;
-                    maxprofit += arr[i].profit;
-                    jobcount ++;
-                    break;
-                }
-            }
-        }
+        mxprofit = 0
+        count = 0
+        N = 0
+        for s in stack:
+            N = max(N, s[0])
+        temp = [0]*N
         
-    return {jobcount, maxprofit};
-    } 
-};
+        while stack:
+            index, profit = stack.pop()
+            for i in range(index-1, -1, -1):
+                if temp[i] == 0:
+                    temp[i] = 1
+                    count += 1
+                    mxprofit += profit
+                    break
+        return count, mxprofit
+        
 
-PYTHON VERSION 
+
 =================================>
 
 def jsp(jobs, n):
