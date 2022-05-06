@@ -1,0 +1,25 @@
+from collections import defaultdict
+class Solution:
+	def dNums(self, A, B):
+
+		if B > len(A):
+			return []
+        res = []
+		d = defaultdict(int)
+		for i in range(B):
+			d[A[i]] += 1
+
+        res.append(len(d))
+		i = 0
+		j = B
+		while j < len(A):
+			d[A[j]] += 1
+			if d[A[i]] == 1:
+				del d[A[i]]
+			else:
+				d[A[i]] -= 1
+			res.append(len(d))
+			i += 1
+			j += 1
+
+		return res
