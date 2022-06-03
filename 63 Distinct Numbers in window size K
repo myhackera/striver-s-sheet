@@ -4,12 +4,12 @@ class Solution:
 
 		if B > len(A):
 			return []
-        res = []
+        	res = []
 		d = defaultdict(int)
 		for i in range(B):
 			d[A[i]] += 1
 
-        res.append(len(d))
+        	res.append(len(d))
 		i = 0
 		j = B
 		while j < len(A):
