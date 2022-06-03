@@ -1,0 +1,52 @@
+solution 1.) 
+------------------
+
+from heapq import *
+class KthLargest:
+
+    def __init__(self, k: int, nums: List[int]):
+        self.nums = []
+        for ele in nums:
+            heappush(self.nums, -ele)
+        self.k = k
+
+    def add(self, val: int) -> int:
+        
+      
+        heappush(self.nums, -val)
+       
+        if len(self.nums) >= self.k:
+            # return nlargest(self.k, self.nums)
+            stack = []
+            for _ in range(self.k):
+                stack.append(heappop(self.nums))
+            ret = -stack[-1]
+            for ele in stack:
+                heappush(self.nums, ele)
+           
+            return ret
+        
+
+
+solution 2.) 
+----------------
+
+from heapq import *
+class KthLargest:
+
+    def __init__(self, k: int, nums: List[int]):
+        self.heap = []
+        self.k = k
+        for ele in nums:
+            self.add(ele)
+        
+
+    def add(self, val: int) -> int:
+        
+        heappush(self.heap, val)
+       
+        if len(self.heap) > self.k:
+            heappop(self.heap)
+            
+        return self.heap[0]
+        
