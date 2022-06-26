@@ -39,3 +39,36 @@ class Solution:
                 
                 
 TC : O(N)
+
+SOLUTION 3.) 
+================>
+Booye moore algorithms
+----------------------->>>>>>>
+class Solution:
+    def majorityElement(self, arr: List[int]) -> List[int]:
+        
+        if not arr:
+            return []
+        
+        candidate1, count1, candidate2, count2 = 0, 0, 1, 0
+        
+        for n in arr:
+            if n == candidate1:
+                count1 += 1
+            elif n == candidate2:
+                count2 += 1
+            elif count1 == 0:
+                candidate1, count1, = n, 1
+            elif count2 == 0:
+                candidate2, count2 = n, 1
+            else:
+                count1 -= 1
+                count2 -= 1
+            
+        ans = []
+        for n in (candidate1, candidate2):
+            if arr.count(n) > len(arr)//3:
+                ans.append(n)
+        return ans
+                
+        
