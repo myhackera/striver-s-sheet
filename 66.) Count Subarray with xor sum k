@@ -1,0 +1,19 @@
+def subarraysXor(arr, x):
+    prefix_xor = [0 for _ in range(len(arr))]
+    d = {}
+    prefix_xor[0] = arr[0]
+    for i in range(1, len(arr)):
+        prefix_xor[i] = prefix_xor[i-1]^arr[i]
+    count = 0
+    for i in range(len(arr)):
+        tmp = x^prefix_xor[i]
+        if tmp in d:
+            count += d[tmp]
+        if prefix_xor[i] == x:
+            count += 1
+        try:
+            d[prefix_xor[i]] += 1
+        except:
+            d[prefix_xor[i]] = 1
+    return count
+            
