@@ -37,5 +37,18 @@ class Solution:
             n -= 1
             
         return nums1
-                
-        
+               
+------------------------------------------------------------------------
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+
+        n = len(nums)
+
+        for i in range(n):
+            index = nums[i]%n
+            nums[index] += n
+
+        for i in range(n):
+            if nums[i]/n >= 2:
+                return i
+
